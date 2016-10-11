@@ -1,0 +1,5 @@
+/* Modal Overlay Fix*/
+.modal-backdrop { z-index: -1; }  
+
+.top-buffer { margin-top:20px; }
+.pull-up-20 { margin-top:-20px; }
