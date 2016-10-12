@@ -136,7 +136,8 @@ With these 50 characters available for each digit if we use 6 (which is chosen) 
 
 #6.PHP Unit Tests added for testing the API future changes
 In project's directory execute:
-		phpunit
+
+	phpunit
 
 - Home page test - test/HomeTest.php
 - Register and Login tests - tests/RegistrationLoginTest.php
