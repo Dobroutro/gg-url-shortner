@@ -14,7 +14,7 @@ app.controller('ItemController', function(dataFactory,$scope,$http){
 
   function getResultsPage(pageNumber) {
       if(! $.isEmptyObject($scope.libraryTemp)){
-          dataFactory.httpRequest(api_token, server_url+'/api/v1/items?search='+$scope.searchText+'&page='+pageNumber).then(function(data) {
+          dataFactory.httpRequest(api_token, server_url+'/api/items?search='+$scope.searchText+'&page='+pageNumber).then(function(data) {
             if(data) {
               $scope.data = data.resource.data;
               $scope.totalItems = data.resource.total;
@@ -22,7 +22,7 @@ app.controller('ItemController', function(dataFactory,$scope,$http){
             }
           });
       }else{
-          dataFactory.httpRequest(api_token, server_url+'/api/v1/items?page='+pageNumber).then(function(data) {
+          dataFactory.httpRequest(api_token, server_url+'/api/items?page='+pageNumber).then(function(data) {
 
           if(data) {
             $scope.data = data.resource.data;
@@ -51,7 +51,7 @@ app.controller('ItemController', function(dataFactory,$scope,$http){
   }
 
   $scope.saveAdd = function(){
-    dataFactory.httpRequest(api_token, server_url+'api/v1/items','POST',{},$scope.form).then(function(data) {
+    dataFactory.httpRequest(api_token, server_url+'api/items','POST',{},$scope.form).then(function(data) {
       if(data) {
         $scope.data.push(data);
         $(".modal").modal("hide");
@@ -61,14 +61,13 @@ app.controller('ItemController', function(dataFactory,$scope,$http){
   }
 
   $scope.edit = function(id){
-    dataFactory.httpRequest(api_token, server_url+'api/v1/items/'+id+'/edit').then(function(data) {
-
+    dataFactory.httpRequest(api_token, server_url+'api/items/'+id+'/edit').then(function(data) {
       	$scope.form = data;
     });
   }
 
   $scope.saveEdit = function(){
-    dataFactory.httpRequest(api_token, server_url+'api/v1/items/'+$scope.form.id,'PUT',{},$scope.form).then(function(data) {
+    dataFactory.httpRequest(api_token, server_url+'api/items/'+$scope.form.id,'PUT',{},$scope.form).then(function(data) {
         if(data) {
       	  $(".modal").modal("hide");
           $scope.data = apiModifyTable($scope.data,data.id,data);
@@ -79,9 +78,8 @@ app.controller('ItemController', function(dataFactory,$scope,$http){
   $scope.remove = function(item,index){
     var result = confirm("Are you sure delete this item?");
    	if (result) {
-      dataFactory.httpRequest(api_token, server_url+'api/v1/items/'+item.id,'DELETE',{}).then(function(data) {
+      dataFactory.httpRequest(api_token, server_url+'api/items/'+item.id,'DELETE',{}).then(function(data) {
           getResultsPage(1);
-          //$scope.data.splice(index,1);
       });
     }
   }

@@ -41,7 +41,7 @@ class IndexController extends Controller
         if($id) {
             $item = $this->item_repo->getByShortCode($id);
             if($item) {
-                return redirect()->away($item->long_url);
+                return redirect()->away($item->long_url, 301);
             }
         }
         return response()->view('errors.404', [], 404);
