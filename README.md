@@ -22,61 +22,62 @@ The migration files can be found in “database/migrations/”  folder
 
 #2.Routes:
 
-Main routes:
-GET|HEAD | / - App\Http\Controllers\IndexController@home
-GET|HEAD | home- App\Http\Controllers\HomeController@index   
-GET|HEAD  | /{id} - App\Http\Controllers\IndexController@resources - here 
-the id is the actual shortened link. If no present in the database 404 error page will be displayed
+	Main routes:
+	GET|HEAD | / - App\Http\Controllers\IndexController@home
+	GET|HEAD | home- App\Http\Controllers\HomeController@index   
+	GET|HEAD  | /{id} - App\Http\Controllers\IndexController@resources 
+		- here the id is the actual shortened link. 
+		- If no present in the database 404 error page will be displayed
 
 Login/Register routes:
                 
-GET|HEAD | login - App\Http\Controllers\Auth\LoginController@showLoginForm                POST     | login -  App\Http\Controllers\Auth\LoginController@login
-POST     | logout - App\Http\Controllers\Auth\LoginController@logout                       POST     | password/email - App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  
-GET|HEAD | password/reset - App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm  
-POST     | password/reset - App\Http\Controllers\Auth\ResetPasswordController@reset   
-GET|HEAD | password/reset/{token} -           App\Http\Controllers\Auth\ResetPasswordController@showResetForm         
-GET|HEAD | register  - App\Http\Controllers\Auth\RegisterController@showRegistrationForm 
-POST     | register - App\Http\Controllers\Auth\RegisterController@register        
+	GET|HEAD | login - App\Http\Controllers\Auth\LoginController@showLoginForm                POST     | login -  App\Http\Controllers\Auth\LoginController@login
+	POST     | logout - App\Http\Controllers\Auth\LoginController@logout                       POST     | password/email - App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  
+	GET|HEAD | password/reset - App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm  
+	POST     | password/reset - App\Http\Controllers\Auth\ResetPasswordController@reset   
+	GET|HEAD | password/reset/{token} -           App\Http\Controllers\Auth\ResetPasswordController@showResetForm         
+	GET|HEAD | register  - App\Http\Controllers\Auth\RegisterController@showRegistrationForm 
+	POST     | register - App\Http\Controllers\Auth\RegisterController@register        
 
 API routes:
 
-Returned http codes: 
-200 - ok
-401 - unauthenticated
-422 – the request is understood but can not be handeled
-404 - error
+	Returned http codes: 
+		- 200 - ok
+		- 401 - unauthenticated
+		- 422 – the request is understood but can not be handeled
+		- 404 - error
 
-GET|HEAD | api/items | items.index | App\Http\Controllers\ItemController@index
+	GET|HEAD | api/items | items.index | App\Http\Controllers\ItemController@index
 
-returned json sample response:
+	returned json sample response:
 
-{"app_url":"http:\/\/localhost\/","resource":{"total":5,"per_page":5,"current_page":1,"last_page":1,"next_page_url":null,"prev_page_url":null,"from":1,"to":5,"data":[{"id":29,"user_id":1,"long_url":"http:\/\/www.radiotunes.com\/oldschoolfunknsoul","short_code":"Fr7B3V","created_at":"2016-10-12 06:38:22","updated_at":"2016-10-12 06:38:22"}]}}
+	{"app_url":"http:\/\/localhost\/","resource":{"total":5,"per_page":5,"current_page":1,"last_page":1,"next_page_url":null,"prev_page_url":null,"from":1,"to":5,"data":[{"id":29,"user_id":1,"long_url":"http:\/\/www.radiotunes.com\/oldschoolfunknsoul","short_code":"Fr7B3V","created_at":"2016-10-12 06:38:22","updated_at":"2016-10-12 06:38:22"}]}}
 
 
-POST | api/items | items.store | App\Http\Controllers\ItemController@store
+	POST | api/items | items.store | App\Http\Controllers\ItemController@store
 
-returned json sample response:
+	returned json sample response:
 
-{"user_id":1,"long_url":"http:\/\/www.di.fm\/","short_code":"wKsCVd","updated_at":"2016-10-12 07:41:25","created_at":"2016-10-12 07:41:25","id":33}
+	{"user_id":1,"long_url":"http:\/\/www.di.fm\/","short_code":"wKsCVd","updated_at":"2016-10-12 07:41:25","created_at":"2016-10-12 07:41:25","id":33}
 
-PUT|PATCH | api/items/{item} | items.update | App\Http\Controllers\ItemController@update
+	PUT|PATCH | api/items/{item} | items.update | App\Http\Controllers\ItemController@update
 
-returned json sample response:
+	returned json sample response:
 
-{"id":33,"user_id":1,"long_url":"http:\/\/www.di.fm\/","short_code":"wKsCVd","created_at":"2016-10-12 07:41:25","updated_at":"2016-10-12 07:41:25"}
+	{"id":33,"user_id":1,"long_url":"http:\/\/www.di.fm\/","short_code":"wKsCVd","created_at":"2016-10-12 07:41:25","updated_at":"2016-10-12 07:41:25"}
 
-GET|HEAD | api/items/{item}/edit | items.edit | App\Http\Controllers\ItemController@edit
+	GET|HEAD | api/items/{item}/edit | items.edit | App\Http\Controllers\ItemController@edit
 
-returned json sample response:
+	returned json sample response:
 
-{"id":33,"user_id":1,"long_url":"http:\/\/www.di.fm\/","short_code":"wKsCVd","cr
-eated_at":"2016-10-12 07:41:25","updated_at":"2016-10-12 07:41:25"}
+	{"id":33,"user_id":1,"long_url":"http:\/\/www.di.fm\/","short_code":"wKsCVd","cr
+	eated_at":"2016-10-12 07:41:25","updated_at":"2016-10-12 07:41:25"}
 
-DELETE | api/items/{item} | items.destroy | App\Http\Controllers\ItemController@destroy
+	DELETE | api/items/{item} | items.destroy | App\Http\Controllers\ItemController@destroy
 
-returned json sample response:
+	returned json sample response:
 
-{"success":true}
+	{"success":true}
 
 
 
