@@ -3,11 +3,11 @@ Url shortener API - Laravel + Angular JS
 
 # Installation 
 
-git clone https://github.com/Dobroutro/gg-url-shortner some_folder 
+	git clone https://github.com/Dobroutro/gg-url-shortner some_folder 
 
-cd /some_folder
+	cd /some_folder
 
-composer update
+	composer update
 
 # Environment setup
 
@@ -21,9 +21,9 @@ storage/
 
 # Automatic Install Database
 
-php artisian migrate
+	php artisian migrate
 
-php artisan db:seed --class=UsersTableSeeder
+	php artisan db:seed --class=UsersTableSeeder
 
 # Manual Install Database
 
@@ -135,7 +135,7 @@ With these 50 characters available for each digit if we use 6 (which is chosen) 
 
 
 #6.PHP Unit Tests added for testing the API future changes
-	In project's directory execute:
+In project's directory execute:
 		phpunit
 
 - Home page test - test/HomeTest.php
