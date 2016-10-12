@@ -17,7 +17,7 @@ class RegistrationLoginTest extends TestCase
             ->type('hello1', 'password')
             ->type('hello1', 'password_confirmation')
             ->press('Register')
-            ->see('Items API Home')
+            ->see('URL Shortener API')
             ->seePageIs('/home')
             ->seeInDatabase('users', ['email' => 'testuser2@test.com']);
     }
@@ -26,7 +26,7 @@ class RegistrationLoginTest extends TestCase
     {
         $this->visit('/login')
             ->submitForm('Login', ['email' => 'tester@test.com', 'password' => 'aaaaaa'])
-            ->see('Items API Home')
+            ->see('URL Shortener API')
             ->seePageIs('/home');
     }
 }

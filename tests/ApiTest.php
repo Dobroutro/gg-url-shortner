@@ -80,17 +80,20 @@ class ApiTest extends TestCase {
         $data = $this->parseJson($response);
         $this->assertIsJson($data);  
         $this->seeJsonStructure([
-            'total',
-            'per_page',
-            'current_page',
-            'last_page',
-            'next_page_url',
-            'prev_page_url',
-            'from',
-            'to',
-            'data' => [
-                '*' => [
-                    'id', 'user_id','title', 'description', 'created_at', 'updated_at',
+            'app_url',
+            'resource'=>[
+                'total',
+                'per_page',
+                'current_page',
+                'last_page',
+                'next_page_url',
+                'prev_page_url',
+                'from',
+                'to',
+                'data' => [
+                    '*' => [
+                        'id', 'user_id','long_url', 'short_code', 'created_at', 'updated_at',
+                    ]
                 ]
             ],
         ]);
@@ -101,7 +104,7 @@ class ApiTest extends TestCase {
         $headers = $this->server_headers;
         $headers['Authorization'] = 'Bearer ' . $this->auth_parameters['api_token'];
 
-        $response = $this->json('POST', 'api/v1/items', [ 'description' => 'test unit description'], $headers);
+        $response = $this->json('POST', 'api/v1/items', [ 'wrong_param' => 'test'], $headers);
         $data = $this->parseJson($response->response);
         $this->assertIsJson($data);  
         $this->assertEquals(422, $response->response->status());
@@ -111,7 +114,7 @@ class ApiTest extends TestCase {
     {   
         $headers = $this->server_headers;
 
-        $response = $this->json('POST', 'api/v1/items', [ 'description' => 'test unit description'], $headers);
+        $response = $this->json('POST', 'api/v1/items', [ 'long_url' => 'test unit description'], $headers);
         $data = $this->parseJson($response->response);
         $this->assertIsJson($data);  
         $this->assertEquals(401, $response->response->status());
@@ -122,9 +125,9 @@ class ApiTest extends TestCase {
         $headers = $this->server_headers;
         $headers['Authorization'] = 'Bearer ' . $this->auth_parameters['api_token'];
 
-        $this->json('POST', 'api/v1/items', ['title' => 'test unit item', 'description' => 'test unit description'], $headers)
+        $this->json('POST', 'api/v1/items', ['long_url' => 'https://laravel.com/docs/5.3'], $headers)
             ->seeJsonStructure([
-                'id', 'user_id','title', 'description', 'created_at', 'updated_at',
+                'id', 'user_id','long_url', 'short_code', 'created_at', 'updated_at',
             ]);
     }
 
@@ -175,10 +178,10 @@ class ApiTest extends TestCase {
 
         $item = Item::orderBy('id', 'asc')->first();  
 
-        $response = $this->json('patch', 'api/v1/items/'.$item->id, ['title' => $item->title.' Updated', 'description' => $item->description], $this->transformHeadersToServerVars($headers));
+        $response = $this->json('patch', 'api/v1/items/'.$item->id, ['long_url' => 'https://laravel.com/docs/5.3'], $this->transformHeadersToServerVars($headers));
 
         $this->seeJsonStructure([
-            'id', 'user_id','title', 'description', 'created_at', 'updated_at',
+            'id', 'user_id','long_url', 'short_code', 'created_at', 'updated_at',
         ]);
     }
 
@@ -189,7 +192,7 @@ class ApiTest extends TestCase {
 
         $item = Item::orderBy('id', 'asc')->first();  
 
-        $response = $this->json('patch', 'api/v1/items/'.$item->id, ['description' => 'test unit description 2'], $this->transformHeadersToServerVars($headers));
+        $response = $this->json('patch', 'api/v1/items/'.$item->id, ['wrong_param' => 'test'], $this->transformHeadersToServerVars($headers));
         $data = $this->parseJson($response->response);
 
         $this->assertIsJson($data);  
@@ -200,7 +203,7 @@ class ApiTest extends TestCase {
     {   
         $headers = $this->server_headers;
 
-        $response = $this->json('patch', 'api/v1/items/1', ['title' => 'test dsaunit item 2','description' => 'test unit description 2'], $headers);
+        $response = $this->json('patch', 'api/v1/items/1', ['long_url' => 'https://laravel.com/docs/5.3'], $headers);
         $data = $this->parseJson($response->response);
 
         $this->assertIsJson($data);  

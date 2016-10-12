@@ -14,6 +14,6 @@ class HomeTest extends TestCase
     public function testBasicExample()
     {
         $this->visit('/')
-             ->see('Items API Test App');
+             ->see('URL Shortener API');
     }
 }
