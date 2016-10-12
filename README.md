@@ -135,10 +135,10 @@ With these 50 characters available for each digit if we use 6 (which is chosen) 
 
 
 #6.PHP Unit Tests added for testing the API future changes
-	- Home page test - test/HomeTest.php
-	- Register and Login tests - tests/RegistrationLoginTest.php
-		!!! The login test works by default only if the user from the seed user class is imported
-	- API tests - test/ApiTest.php
+- Home page test - test/HomeTest.php
+- Register and Login tests - tests/RegistrationLoginTest.php
+	!!! The login test works by default only if the user from the seed user class is imported
+- API tests - test/ApiTest.php
 
 	In project's directory execute:
 
