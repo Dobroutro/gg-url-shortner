@@ -1,6 +1,33 @@
 # gg-url-shortner
 Url shortener API - Laravel + Angular JS 
 
+# Installation 
+
+git clone https://github.com/Dobroutro/gg-url-shortner some_folder 
+
+cd /some_folder
+
+composer update
+
+# Environment setup
+
+edit mysql credentials and copy or rename .env.example to .env
+
+edit accordingly config/database.php mysql credentials
+
+write permissions necessary to be set eventually for directories
+
+storage/
+
+# Automatic Install Database
+
+php artisian migrate
+
+php artisan db:seed --class=UsersTableSeeder
+
+# Manual Install Database
+
+db_schema.sql 
 
 
 #API Shortener description:
