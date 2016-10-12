@@ -31,13 +31,15 @@ The migration files can be found in “database/migrations/”  folder
 
 Login/Register routes:
                 
-	GET|HEAD | login - App\Http\Controllers\Auth\LoginController@showLoginForm                POST     | login -  App\Http\Controllers\Auth\LoginController@login
-	POST     | logout - App\Http\Controllers\Auth\LoginController@logout                       POST     | password/email - App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  
-	GET|HEAD | password/reset - App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm  
-	POST     | password/reset - App\Http\Controllers\Auth\ResetPasswordController@reset   
-	GET|HEAD | password/reset/{token} -           App\Http\Controllers\Auth\ResetPasswordController@showResetForm         
-	GET|HEAD | register  - App\Http\Controllers\Auth\RegisterController@showRegistrationForm 
-	POST     | register - App\Http\Controllers\Auth\RegisterController@register        
+	GET|HEAD | login | App\Http\Controllers\Auth\LoginController@showLoginForm                
+	POST     | login |  App\Http\Controllers\Auth\LoginController@login
+	POST     | logout | App\Http\Controllers\Auth\LoginController@logout                       
+	POST     | password/email | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  
+	GET|HEAD | password/reset | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm  
+	POST     | password/reset | App\Http\Controllers\Auth\ResetPasswordController@reset   
+	GET|HEAD | password/reset/{token} | App\Http\Controllers\Auth\ResetPasswordController@showResetForm         
+	GET|HEAD | register  | App\Http\Controllers\Auth\RegisterController@showRegistrationForm 
+	POST     | register | App\Http\Controllers\Auth\RegisterController@register        
 
 API routes:
 
